@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab Form</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+  <div class="container">
+    <h1><font size="7">Hacker Fab</font></h1>
+    <form id="labForm" method="POST" action="/submit">
+      <div class="process-container">
+        <label for="chipNumber">Chip Number:</label>
+        <input type="number" name="chipNumber" required><br>
+
+        <label for="processType">Type of Process:</label>
+        <select class="process-type" name="processType">
+          <option value="pattern">Pattern</option>
+          <option value="plasmaEtch">Plasma Etch</option>
+        </select><br>
+
+        <div class="pattern-fields hidden">
+          <label for="person">Person:</label>
+          <input type="text" name="person"><br>
+
+          <label for="date">Date:</label>
+          <input type="date" name="date"><br>
+
+          <label for="underlyingMaterial">Underlying Material:</label>
+          <input type="text" name="underlyingMaterial"><br>
+
+          <label for="cleaningStep">Cleaning Step:</label>
+          <input type="text" name="cleaningStep"><br>
+
+          <label for="hmdsPrebakeTemp">HMDS Prebake Temperature:</label>
+          <input type="number" name="hmdsPrebakeTemp"><br>
+
+          <label for="hmdsPrebakeTime">HMDS Prebake Time:</label>
+          <input type="number" name="hmdsPrebakeTime"><br>
+
+          <label for="hmdsSpinCoatTemp">HMDS Spin Coat Temperature:</label>
+          <input type="number" name="hmdsSpinCoatTemp"><br>
+
+          <label for="hmdsSpinCoatTime">HMDS Spin Coat Time:</label>
+          <input type="number" name="hmdsSpinCoatTime"><br>
+
+          <label for="hmdsBakeTemp">HMDS Bake Temperature:</label>
+          <input type="number" name="hmdsBakeTemp"><br>
+
+          <label for="hmdsBakeTime">HMDS Bake Time:</label>
+          <input type="number" name="hmdsBakeTime"><br>
+
+          <label for="photoresistSpincoatTemp">Photoresist Spincoat Temperature:</label>
+          <input type="number" name="photoresistSpincoatTemp"><br>
+
+          <label for="photoresistSpincoatTime">Photoresist Spincoat Time:</label>
+          <input type="number" name="photoresistSpincoatTime"><br>
+
+          <label for="photoresistPostBakeTemp">Photoresist Post Bake Temperature:</label>
+          <input type="number" name="photoresistPostBakeTemp"><br>
+
+          <label for="photoresistPostBakeTime">Photoresist Post Bake Time:</label>
+          <input type="number" name="photoresistPostBakeTime"><br>
+
+          <label for="exposurePatterns">Exposure Patterns:</label>
+          <input type="text" name="exposurePatterns"><br>
+
+          <label for="exposureTime">Exposure Time:</label>
+          <input type="number" name="exposureTime"><br>
+
+          <label for="developTime">Develop Time:</label>
+          <input type="number" name="developTime"><br>
+        </div>
+
+        <div class="plasma-etch-fields hidden">
+          <label for="person">Person:</label>
+          <input type="text" name="person"><br>
+
+          <label for="date">Date:</label>
+          <input type="date" name="date"><br>
+
+          <label for="o2Flow">O2 Flow:</label>
+          <input type="number" name="o2Flow"><br>
+
+          <label for="sf6Flow">SF6 Flow:</label>
+          <input type="number" name="sf6Flow"><br>
+
+          <label for="rfFlow">RF Flow:</label>
+          <input type="number" name="rfFlow"><br>
+
+          <label for="etchTime">Etch Time:</label>
+          <input type="number" name="etchTime"><br>
+
+          <label for="etchDepth">Etch Depth:</label>
+          <input type="number" name="etchDepth"><br>
+        </div>
+      </div>
+
+      <button type="button" id="addProcess">Add Another Process</button>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <script>
+    const addProcessButton = document.getElementById('addProcess');
+    const labForm = document.getElementById('labForm');
+
+    addProcessButton.addEventListener('click', function () {
+      const processContainer = document.querySelector('.process-container').cloneNode(true);
+      processContainer.querySelector('select').selectedIndex = 0; // Reset the process type
+      processContainer.querySelector('.pattern-fields').style.display = 'none'; // Hide pattern fields
+      processContainer.querySelector('.plasma-etch-fields').style.display = 'none'; // Hide plasma etch fields
+      labForm.insertBefore(processContainer, addProcessButton);
+    });
+
+    labForm.addEventListener('change', function (event) {
+      const select = event.target;
+      if (select.classList.contains('process-type')) {
+        const selectedValue = select.value;
+        const processContainer = select.closest('.process-container');
+        const patternFields = processContainer.querySelector('.pattern-fields');
+        const plasmaEtchFields = processContainer.querySelector('.plasma-etch-fields');
+
+        if (selectedValue === 'pattern') {
+          patternFields.style.display = 'block';
+          plasmaEtchFields.style.display = 'none';
+        } else if (selectedValue === 'plasmaEtch') {
+          patternFields.style.display = 'none';
+          plasmaEtchFields.style.display = 'block';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+
