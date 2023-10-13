@@ -20,7 +20,7 @@ os.chdir('/content/drive/My Drive/HackerFab')
 from flask import Flask
 from pyngrok import ngrok
 
-ngrok.set_auth_token("2WfWq3Rf8L9Jh48rWVtsa5tYQWl_6yz39FvD9RFxaLXPtnmhg")
+ngrok.set_auth_token("sensitive token here")
 public_url = ngrok.connect(5000).public_url
 
 ngrok.kill()
@@ -30,7 +30,7 @@ ngrok.kill()
 from flask import Flask, request, render_template
 from gevent.pywsgi import WSGIServer
 app = Flask(__name__)
-ngrok.set_auth_token("2WfWq3Rf8L9Jh48rWVtsa5tYQWl_6yz39FvD9RFxaLXPtnmhg")
+ngrok.set_auth_token("senstive token here")
 port_no = 5000
 public_url =  ngrok.connect(port_no).public_url
 
@@ -126,5 +126,4 @@ if __name__ == '__main__':
   http_server = WSGIServer(('', 5000), app)
   http_server.serve_forever()
 
-!ls
 
