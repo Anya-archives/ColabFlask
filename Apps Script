@@ -1,0 +1,59 @@
+function submitData() {
+  var ss        = SpreadsheetApp.getActiveSpreadsheet();
+  var formSS    = ss.getSheetByName("Data Entry"); //Data entry Sheet
+  var datasheet = ss.getSheetByName("Data"); //Data Sheet
+  
+  //Input Values
+  var values = [[formSS.getRange("F6").getValue(),
+                 formSS.getRange("F8").getValue(),
+                 formSS.getRange("F10").getValue(),
+                 formSS.getRange("F12").getValue(),
+                 formSS.getRange("F14").getValue(),
+                 formSS.getRange("F15").getValue(),
+                 formSS.getRange("F16").getValue(),
+                 formSS.getRange("F17").getValue(),
+                 formSS.getRange("F18").getValue(),
+                 formSS.getRange("F19").getValue(),
+                 formSS.getRange("F20").getValue(),
+                 formSS.getRange("F21").getValue(),
+                 formSS.getRange("F22").getValue(),
+                 formSS.getRange("F23").getValue(),
+                 formSS.getRange("F24").getValue(),
+                 formSS.getRange("F25").getValue()]];
+  
+  var processsteps = [[formSS.getRange("D6").getValue(),
+                 formSS.getRange("D8").getValue(),
+                 formSS.getRange("D10").getValue(),
+                 formSS.getRange("D12").getValue(),
+                 formSS.getRange("D14").getValue(),
+                 formSS.getRange("D15").getValue(),
+                 formSS.getRange("D16").getValue(),
+                 formSS.getRange("D17").getValue(),
+                 formSS.getRange("D18").getValue(),
+                 formSS.getRange("D19").getValue(),
+                 formSS.getRange("D20").getValue(),
+                 formSS.getRange("D21").getValue(),
+                 formSS.getRange("D22").getValue(),
+                 formSS.getRange("D23").getValue(),
+                 formSS.getRange("D24").getValue(),
+                 formSS.getRange("D25").getValue()]];
+
+  datasheet.getRange(datasheet.getLastRow()+1, 1, 1, 16).setValues(processsteps);
+  datasheet.getRange(datasheet.getLastRow()+1, 1, 1, 16).setValues(values);
+  
+ 
+}
+
+function clear1() {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Data Entry');
+  var rangesToClear = ['F6', "F8", "F10", "F12", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "F25"];
+  for (var i=0; i<rangesToClear.length; i++) { 
+    sheet.getRange(rangesToClear[i]).clearContent();
+    var getCar = sheet.getRange("D6").getValue();
+    sheet.getRange("F6").setValue(getCar);
+  }
+}
+
+function onEdit(e) {
+  e.source.setActiveSelection(e.range.offset(2, 0));
+}
