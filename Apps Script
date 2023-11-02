@@ -19,7 +19,12 @@ function submitData() {
                  formSS.getRange("F22").getValue(),
                  formSS.getRange("F23").getValue(),
                  formSS.getRange("F24").getValue(),
-                 formSS.getRange("F25").getValue()]];
+                 formSS.getRange("F25").getValue(),
+                 formSS.getRange("F26").getValue(),
+                 formSS.getRange("F27").getValue(),
+                 formSS.getRange("F28").getValue(),
+                 formSS.getRange("F29").getValue(),
+                 formSS.getRange("F30").getValue()]];
   
   var processsteps = [[formSS.getRange("D6").getValue(),
                  formSS.getRange("D8").getValue(),
@@ -36,17 +41,22 @@ function submitData() {
                  formSS.getRange("D22").getValue(),
                  formSS.getRange("D23").getValue(),
                  formSS.getRange("D24").getValue(),
-                 formSS.getRange("D25").getValue()]];
+                 formSS.getRange("D25").getValue(),
+                 formSS.getRange("D26").getValue(),
+                 formSS.getRange("D27").getValue(),
+                 formSS.getRange("D28").getValue(),
+                 formSS.getRange("D29").getValue(),
+                 formSS.getRange("D30").getValue()]];
 
-  datasheet.getRange(datasheet.getLastRow()+1, 1, 1, 16).setValues(processsteps);
-  datasheet.getRange(datasheet.getLastRow()+1, 1, 1, 16).setValues(values);
+  datasheet.getRange(datasheet.getLastRow()+1, 1, 1, 21).setValues(processsteps);
+  datasheet.getRange(datasheet.getLastRow()+1, 1, 1, 21).setValues(values);
   
  
 }
 
 function clear1() {
   var sheet = SpreadsheetApp.getActive().getSheetByName('Data Entry');
-  var rangesToClear = ['F6', "F8", "F10", "F12", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "F25"];
+  var rangesToClear = ['F6', "F8", "F10", "F12", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "F25","F26","F27","F28","F29","F30"];
   for (var i=0; i<rangesToClear.length; i++) { 
     sheet.getRange(rangesToClear[i]).clearContent();
     var getCar = sheet.getRange("D6").getValue();
